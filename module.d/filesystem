@@ -1,0 +1,4 @@
+#!/opt/baka/baka-run.sh
+
+backup_description="Backup filesystem directories"
+backup_paths="${FILESYSTEM_PATHS}"

@@ -1,0 +1,2 @@
+MYSQLDUMP_LOCAL_PATH="/root/.backup-tmp/mysqldump-local"
+MYSQLDUMP_LOCAL_DBS="test"

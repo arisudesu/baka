@@ -1,0 +1,18 @@
+#!/opt/baka/baka-run.sh
+
+: ${docker_exec_local_path:=${DOCKER_EXEC_LOCAL_PATH:-"/root/.backup-tmp/docker-exec"}}
+
+backup_description="Execute command in existing Docker container and backup host directory"
+backup_paths="$DOCKER_EXEC_HOST_PATH"
+
+backup_pre() {
+	mkdir -p "$docker_exec_local_path" || exit 1
+
+	[ -n "$docker_exec_local_path" ] || exit 1
+
+	docker exec "$DOCKER_CONTAINER" $COMMAND
+}
+
+backup_post() {
+	rm -rf "$docker_exec_local_path"
+}

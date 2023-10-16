@@ -1,0 +1,3 @@
+DOCKER_EXEC_HOST_PATH="/root/.backup-tmp/docker-exec"
+DOCKER_CONTAINER="mycontainer"
+DOCKER_COMMAND="cp -R -p /data/db /data/backup"

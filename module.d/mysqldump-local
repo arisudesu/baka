@@ -1,0 +1,21 @@
+#!/opt/baka/baka-run.sh
+
+: ${mysqldump_local_path:=${MYSQLDUMP_LOCAL_PATH:-"/root/.backup-tmp/mysqldump-local"}}
+: ${mysqldump_local_dbs:=${MYSQLDUMP_LOCAL_DBS:-""}}
+
+backup_description="Backup MySQL databases"
+backup_paths="$mysqldump_local_path"
+
+backup_pre() {
+	mkdir -p "$mysqldump_local_path" || exit 1
+
+	[ -n "$MYSQLDUMP_LOCAL_DBS" ] || exit 1
+
+	for db in $mysqldump_local_dbs; do
+		mysqldump "$db" > "$mysqldump_local_path/$db.sql" || exit 1
+	done
+}
+
+backup_post() {
+	rm -rf "$mysqldump_local_path"
+}
