@@ -20,11 +20,11 @@ unset _c
 unset _conf_d
 
 default_backup_pre() {
-	echo exit 0
+	return 0
 }
 
 default_backup_post() {
-	echo exit 0
+	return 0
 }
 
 backup_pre() {

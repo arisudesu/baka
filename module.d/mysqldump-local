@@ -7,12 +7,12 @@ backup_description="Backup MySQL databases"
 backup_paths="$mysqldump_local_path"
 
 backup_pre() {
-	mkdir -p "$mysqldump_local_path" || exit 1
+	mkdir -p "$mysqldump_local_path" || return 1
 
-	[ -n "$MYSQLDUMP_LOCAL_DBS" ] || exit 1
+	[ -n "$MYSQLDUMP_LOCAL_DBS" ] || return 1
 
 	for db in $mysqldump_local_dbs; do
-		mysqldump "$db" > "$mysqldump_local_path/$db.sql" || exit 1
+		mysqldump "$db" > "$mysqldump_local_path/$db.sql"
 	done
 }
 

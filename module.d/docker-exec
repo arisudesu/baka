@@ -6,9 +6,9 @@ backup_description="Execute command in existing Docker container and backup host
 backup_paths="$DOCKER_EXEC_HOST_PATH"
 
 backup_pre() {
-	mkdir -p "$docker_exec_local_path" || exit 1
+	mkdir -p "$docker_exec_local_path" || return 1
 
-	[ -n "$docker_exec_local_path" ] || exit 1
+	[ -n "$docker_exec_local_path" ] || return 1
 
 	docker exec "$DOCKER_CONTAINER" $COMMAND
 }
