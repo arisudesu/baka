@@ -14,10 +14,7 @@ backup_pre() {
 		mkdir "$mysqldump_dump_path" || return 1
 	fi
 
-	[ -d "$mysqldump_dump_path" ] || return 1
-	[ -w "$mysqldump_dump_path" ] || return 1
-
-	find "$mysqldump_dump_path" -mindepth 1 -delete || return 1
+	_cleanup_dir || return 1
 
 	[ -n "$mysqldump_dbs" ] || return 1
 
@@ -31,8 +28,12 @@ backup_post() {
 
 	[ -e "$mysqldump_dump_path" ] || return 0
 
+	_cleanup_dir || return 1
+}
+
+_cleanup_dir() {
 	[ -d "$mysqldump_dump_path" ] || return 1
 	[ -w "$mysqldump_dump_path" ] || return 1
 
-	#find "$mysqldump_dump_path" -mindepth 1 -delete || return 1
+	find "$mysqldump_dump_path" -mindepth 1 -delete || return 1
 }
