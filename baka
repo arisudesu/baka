@@ -71,7 +71,6 @@ if [ $# -gt 0 ]; then
 fi
 
 # Load profile
-
 echo "Loading profile: $backup_profile"
 sourcex "$BAKA_CONFDIR/profile.d/$backup_profile"
 
