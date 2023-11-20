@@ -1,4 +1,4 @@
-#!/opt/baka/baka-run.sh
+# Simple backup of files and directories.
+# Only defines path(s) to backup. No pre/post actions.
 
-backup_description="Backup filesystem directories"
-backup_paths="${FILESYSTEM_PATHS}"
+backup_paths="${FILESYSTEM_PATHS:-""}"

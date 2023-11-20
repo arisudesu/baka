@@ -1,0 +1,2 @@
+MYSQLDUMP_DUMP_PATH="/var/backup/${BAKA_MODULE}"
+MYSQLDUMP_DBS="test"

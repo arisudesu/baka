@@ -1,0 +1,38 @@
+# MySQL DBMS backup.
+# Uses mysqldump to dump database snapshots to backup. Hence,
+# suitable only for small-scale databases without large BLOBs.
+
+mysqldump_dump_path=${MYSQLDUMP_DUMP_PATH:-""}
+mysqldump_dbs=${MYSQLDUMP_DBS:-""}
+
+backup_paths="$mysqldump_dump_path"
+
+backup_pre() {
+	[ -n "$mysqldump_dump_path" ] || return 1
+
+	if [ ! -e "$mysqldump_dump_path" ]; then
+		mkdir "$mysqldump_dump_path" || return 1
+	fi
+
+	[ -d "$mysqldump_dump_path" ] || return 1
+	[ -w "$mysqldump_dump_path" ] || return 1
+
+	find "$mysqldump_dump_path" -mindepth 1 -delete || return 1
+
+	[ -n "$mysqldump_dbs" ] || return 1
+
+	for db in $mysqldump_dbs; do
+		mysqldump "$db" > "$mysqldump_dump_path/$db.sql"
+	done
+}
+
+backup_post() {
+	[ -n "$mysqldump_dump_path" ] || return 1
+
+	[ -e "$mysqldump_dump_path" ] || return 0
+
+	[ -d "$mysqldump_dump_path" ] || return 1
+	[ -w "$mysqldump_dump_path" ] || return 1
+
+	#find "$mysqldump_dump_path" -mindepth 1 -delete || return 1
+}

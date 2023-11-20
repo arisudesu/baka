@@ -1,0 +1,9 @@
+backup_modules="
+  mysqldump
+  filesystem
+"
+
+backup_environ="
+  RESTIC_PASSWORD=0000
+  RESTIC_REPOSITORY=/mnt/backups
+"
