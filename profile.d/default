@@ -4,6 +4,6 @@ backup_modules="
 "
 
 backup_environ="
-  RESTIC_PASSWORD=0000
+  RESTIC_PASSWORD=changeme
   RESTIC_REPOSITORY=/mnt/backups
 "
