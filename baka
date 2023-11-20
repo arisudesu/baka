@@ -53,7 +53,7 @@ fi
 if [ "$1" = "-p" ] || [ "$1" = "--profile" ]; then
 	if [ -z "$2" ]; then
 		echo >&2 "$0: option requires an argument: $1"
-		usage 1
+		usage >&2 1
 	fi
 	if strinstr / "$2"; then
 		echo >&2 "$0: profile name must not contain slash: $2"
@@ -67,7 +67,7 @@ fi
 
 if [ $# -gt 0 ]; then
 	echo >&2 "$0: extra arguments: $*"
-	usage 1
+	usage >&2 1
 fi
 
 # Load profile
