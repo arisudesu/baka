@@ -1,0 +1,4 @@
+DOCKER_CTR_NAME="mongo"
+DOCKER_CTR_CMD_PRE="mongodump -o /data/backup"
+DOCKER_CTR_CMD_POST="rm -r /data/backup"
+DOCKER_CTR_PATH="/data/backup"

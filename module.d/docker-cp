@@ -1,0 +1,41 @@
+# Docker dump and backup.
+# Executes arbitrary command in Docker container to dump the data,
+# then copies container path onto host to back up. Afterwards, it
+# removes the data dump from the container using arbitrary command.
+
+ctr_name=${DOCKER_CTR_NAME:-""}
+ctr_cmd_pre=${DOCKER_CTR_CMD_PRE:-""}
+ctr_cmd_post=${DOCKER_CTR_CMD_POST:-""}
+ctr_path=${DOCKER_CTR_PATH:-""}
+
+host_path="/var/backup/${BAKA_MODULE}"
+backup_paths="$host_path"
+
+backup_pre() {
+    [ -n "$host_path" ] || return 1
+
+	if [ ! -e "$host_path" ]; then
+		mkdir "$host_path" || return 1
+	fi
+
+	_cleanup_dir || return 1
+
+	docker exec $ctr_name $ctr_cmd_pre || return 1
+	docker cp $ctr_name:$ctr_path $host_path || return 1
+}
+
+backup_post() {
+	docker exec $ctr_name $ctr_cmd_post || return 1
+
+	[ -n "$host_path" ] || return 1
+	[ -e "$host_path" ] || return 0
+
+	_cleanup_dir || return 1
+}
+
+_cleanup_dir() {
+	[ -d "$host_path" ] || return 1
+	[ -w "$host_path" ] || return 1
+
+	find "$host_path" -mindepth 1 -delete || return 1
+}

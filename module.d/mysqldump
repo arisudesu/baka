@@ -25,7 +25,6 @@ backup_pre() {
 
 backup_post() {
 	[ -n "$mysqldump_dump_path" ] || return 1
-
 	[ -e "$mysqldump_dump_path" ] || return 0
 
 	_cleanup_dir || return 1
