@@ -1,4 +1,11 @@
+# Container to execute commands
 DOCKER_CTR_NAME="mongo"
+
+# Dump command (run inside container)
 DOCKER_CTR_CMD_PRE="mongodump -o /data/backup"
+
+# Cleanup command (run inside container)
 DOCKER_CTR_CMD_POST="rm -r /data/backup"
+
+# Data path inside container
 DOCKER_CTR_PATH="/data/backup"
