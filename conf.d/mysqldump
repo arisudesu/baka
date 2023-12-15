@@ -1,2 +1,2 @@
-MYSQLDUMP_DUMP_PATH="/var/backup/${BAKA_MODULE}"
+# Database names to dump
 MYSQLDUMP_DBS="test"
