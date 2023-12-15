@@ -12,7 +12,7 @@ host_path="/var/backup/${BAKA_MODULE}"
 backup_paths="$host_path"
 
 backup_pre() {
-    [ -n "$host_path" ] || return 1
+	[ -n "$host_path" ] || return 1
 
 	if [ ! -e "$host_path" ]; then
 		mkdir "$host_path" || return 1
