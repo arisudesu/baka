@@ -6,3 +6,5 @@ backup_environ="
   RESTIC_PASSWORD=changeme
   RESTIC_REPOSITORY=/mnt/backups
 "
+
+backup_basedir="/var/backups"

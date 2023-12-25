@@ -8,7 +8,7 @@ ctr_cmd_pre=${DOCKER_CTR_CMD_PRE:-""}
 ctr_cmd_post=${DOCKER_CTR_CMD_POST:-""}
 ctr_path=${DOCKER_CTR_PATH:-""}
 
-host_path="/var/backup/${BAKA_MODULE}"
+host_path="${BAKA_BASEDIR}/${BAKA_MODULE}"
 backup_paths="$host_path"
 
 backup_pre() {

@@ -96,7 +96,8 @@ done
 for m in $backup_modules; do
 	echo "Running module: $m"
 	(
-		BAKA_MODULE=$m; export BAKA_MODULE
+		BAKA_MODULE=$m
+		BAKA_BASEDIR="${backup_basedir:-"/var/backup"}"
 
 		sourcex -e "$BAKA_CONFDIR/conf.d/$m"
 		sourcex "$BAKA_CONFDIR/module.d/$m"

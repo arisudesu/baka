@@ -4,7 +4,7 @@
 
 mysqldump_dbs=${MYSQLDUMP_DBS:-""}
 
-dump_path="/var/backup/${BAKA_MODULE}"
+dump_path="${BAKA_BASEDIR}/${BAKA_MODULE}"
 backup_paths="$dump_path"
 
 backup_pre() {
