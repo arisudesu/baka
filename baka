@@ -113,7 +113,11 @@ for m in $backup_modules; do
 		echo "Module defined backup paths: $backup_paths"
 
 		if [ "$backup_rc_pre" = 0 ] && [ -n "$backup_paths" ]; then
-			env $backup_environ restic backup --tag "$BAKA_MODULE" $backup_paths; backup_rc_restic=$?
+			(
+				[ -n "$backup_environ" ] && export $backup_environ
+				restic backup --tag "$BAKA_MODULE" $backup_paths
+			)
+			backup_rc_restic=$?
 		fi
 
 		if [ "$(command -v "backup_post")" = "backup_post" ]; then
